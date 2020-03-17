@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Neal A. Akyildirim - Data Scientist</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/blog-post.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Neal A. Akyildirim -Data Scientist </a>
+      <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-12">
+
+        <!-- Title -->
+        <h1 class="mt-4">Introduction to Linear Regression</h1>
+
+        <!-- Author -->
+        <p class="lead">
+          
+          <!--<a href="#">Start Bootstrap</a> -->
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on January 28, 2020</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="../img/introduction-linear.jpg" alt="instacart image">
+
+        <hr>
+
+        <!-- Post Content -->
+        <h2> Introduction </h2>
+        <p class="lead">Steps to take prior to creating linear regression models.</p>
+
+       <p>Before we start diving into Linear Regression, I would like to emphasize how important it is to understand the problem before starting working with data. We often see statisticians start talking about the slope, distribution and other actual analysis without formulating the problem. As Albert Einstein once said, “The formulation of a problem is often more essential than its solution, which may be merely a matter of mathematical or experimental skills”. Hence, like every other data analysis execution, we need to formulate the problem by collaborating the matter experts in order to understand the background of the particular domain, the objective of the analysis, the alignment of the output and further put together the problem into statistical terms.</p>
+
+       <p>Understanding the data collection is as important as formulating the problem, since certain collection processes will have an impact on the data and without knowing certain aspects of the collection process, we might end up coming up with wrong conclusions at the end of our analysis. Best practices in terms of understanding the data collection are;</p>
+
+       <li>See if the data is collected from a designed survey.</li>
+       <li>Explore no-response. Certain data that we didn't get a response for might be very important to the problem and our analysis.</li>
+       <li>Find if there are any missing values or possible data errors and perform sanity check.</li>
+       <li>See how the units of measurement set up and perform standardization if necessary.</li>
+       <li>See how the qualitative such as categorical variables are coded.</li>
+
+       <p>Once we formulate our problem and understand how the data was collected, we can perform cleaning and initial data analysis. We can simplify this by;</p>
+
+       <li>Look at the summary of numerical variables.</li>
+       <li>See the distribution of variables</li>
+       <li>Look for possible correlation</li>
+       <li>Explore any possible outliers</li>
+       <li>Look for data errors with data sanity.</li>
+       <li>Make sure data types are correct.</li>
+
+       <h2>Use of Linear Regression</h2>
+
+       <p>Regression gives us simply the linear relationship of two or more variables within a dataset. We have a dependent variable (or predictor variable) and has a relationship with independent variable (response variable).</p>
+
+       <p>Let’s review some examples and see if we can find the relationship between variables. As we are reviewing these datasets, we will also talk about the certain assumptions that we need to make or certain conditions that we need to meet in order to use linear regression properly.</p>
+
+       <p>Our first data set is on teenage gambling in Britain.</p>
+
+       <p>As we don't have any physical background on the domain of gambling, we can create an example problem statement in order to guide our analysis. This can simply be “Why do British teenagers gamble?” or “Does income or status have any impact on British teenager’s gambling habit?” or “Can education help reduce gambling in British teenagers?</p>
+
+       <img class="img-fluid rounded" src="../img/lin1.jpg" alt="lin1 image">
+       <img class="img-fluid rounded" src="../img/lin2.jpg" alt="lin2 image">
+
+       <p>There are no missing values in our dataset. Looking at summary statistics can give us some indication if there are any data errors. For example, there are teeangers that don't spend any money on gambling. I think that is believable. The minimum income is 0.6 pounds per week. Does that make sense? Since we don't see any obvious errors such as “0” income or “2” sex value, let’s assume that the person who did the survey was accurate gathering these data.</p>
+
+       <img class="img-fluid rounded" src="../img/lin3.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/lin4.jpg" alt="lin3 image">
+
+       <p>Based on our problem statements we defined earlier (“Does income or status have any impact on British teenager’s gambling habit? for example), the independent or response variable “y” is “gamble”. We can see that there are some linear correlation between gamble and income. We do see some other correlations between verbal and status for example, however, since we are trying to find a solution to a specific problem, we can focus on gamble response variable and income dependent variable(predictor).</p>
+
+       <img class="img-fluid rounded" src="../img/lin5.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/lin6.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/lin7.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/lin8.jpg" alt="lin3 image">
+
+       <p>Before we start looking to create regression model, predictive value, errors, intercept or slope, we should look to see if the current relationship between income as the predictor and gamble as the response variable meets certain assumptions and conditions that is required for linear regression.</p>
+
+       <p>In order for us to create a linear regression model, we need to make sure the relationship is linear, there is independence of errors meaning, the residuals are not influencing each other and they are not following a certain pattern, there is homoscedasticity between income and gamble so that the data does not look like a funnel and normality of error distribution where the observations are mostly around the predicted value and evenly distributed.</p>
+
+       <p>I find the easiest way to explain these assumptions are through visualization. Here are four figures that explains each assumption that the dataset needs to meet for linear regression.</p>
+
+       <img class="img-fluid rounded" src="../img/lin9.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/lin10.jpg" alt="lin3 image">
+
+       <p>When we look at our regression line and the positions of each observation, we can see that there is somewhat linearity, the errors are not dependent from each other, residuals are not creating any funnel look alike pattern and they are distributed normally. This means that, as our independent variable income increases the spending on gamble (our dependent response variable) increases as well. There is a definite positive, linear relationship between income and gamble.</p>
+
+       <p>We won't be expanding our analysis any further and create regression model in this article as this meant to be an intro to linear regression however we can explore other datasets in a similar way.</p>
+
+       <p>Let’s look at another study where we look at 97 men with prostate cancer who were due to receive a radical prostatectomy.</p>
+
+       <img class="img-fluid rounded" src="../img/lin11.jpg" alt="lin3 image">
+
+       <p>As we can see, we definitely need to understand the variable descriptions and must consult to domain expertise around prostate in order to fully formulate the problem. Below are the description of each variable;</p>
+
+       <li>lcavol: cancer volume</li>
+       <li>lweight: cancer weight</li>
+       <li>age: age</li>
+       <li>lbph: benign prostatic hyperplasia amount</li>
+       <li>svi: seminal vesicle invasion</li>
+       <li>lcp: capsular penetration</li>
+       <li>gleason: Gleason score</li>
+       <li>pgg45: percentage Gleason scores 4 or 5</li>
+       <li>lpsa: prostate specific antigen</li>
+
+       <img class="img-fluid rounded" src="../img/lin12.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/lin13.jpg" alt="lin3 image">
+
+       <p>We have 97 observations, 9 attributes. When we look at the minimum and maximum values, the only questionable variables we have is svi: seminal vesicle invasion and pgg45: percentage Gleason scores 4 or 5. Unfortunately, we won't be able to confirm if these values make sense or a possible data error without having any medical expertise. Hence, we will assume the statistician who worked on creating this data set did an accurate data collection.</p>
+
+       <img class="img-fluid rounded" src="../img/lin14.jpg" alt="lin3 image">
+
+       <p>When we look at the correlation between variables, let’s keep in mind we are focusing on the defined response variable of lpsa, we see that cancer volume has the strongest relationship.</p>
+
+       <img class="img-fluid rounded" src="../img/lin15.jpg" alt="lin3 image">
+
+       <p>When we look at the distribution of each observation around the linear line, we see the linearity, independence of errors, homoscedasticity and normality. We can firmly say that there is a positive linear correlation between lcavol independent variable and lpsa dependent variable.</p>
+
+       <h2>Conclusion</h2>
+
+       <p>Regardless of the statistical analysis, we need to first formulate a problem statement and understand the collection of data. We can do this by collaboration with domain experts, surveyors or business stakeholders. By following the simple steps of data summary statistics such as a summary of numerical variables, distribution, correlation, outliers, data errors and data types, we can point data errors and define analytical approach including Linear Regression. For us to be able to use linear regression accurately, we need to make sure the linear regression conditions are met. As we are looking at the data not from a researchers perspective but rather from a data analyst or data scientist vision, we do not necessarily perform every test for each condition but rather make an assumption of these conditions by looking at certain distribution plots.</p>
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        <hr>
+
+        <!-- Comments Form -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <textarea class="form-control" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Single Comment -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          </div>
+        </div>
+
+        <!-- Comment with nested comments -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <!--<div class="col-md-4">
+
+        <!-- Search Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Categories</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">Web Design</a>
+                  </li>
+                  <li>
+                    <a href="#">HTML</a>
+                  </li>
+                  <li>
+                    <a href="#">Freebies</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">JavaScript</a>
+                  </li>
+                  <li>
+                    <a href="#">CSS</a>
+                  </li>
+                  <li>
+                    <a href="#">Tutorials</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Side Widget</h5>
+          <div class="card-body">
+            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+          </div>
+        </div>-->
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

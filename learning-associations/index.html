@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Neal A. Akyildirim - Data Scientist</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/blog-post.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Neal A. Akyildirim -Data Scientist </a>
+      <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-12">
+
+        <!-- Title -->
+        <h1 class="mt-4">Learning Associations </h1>
+
+        <!-- Author -->
+        <p class="lead">
+          
+          <!--<a href="#">Start Bootstrap</a> -->
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on February 3, 2020</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="../img/learning-associations.jpg" alt="instacart image">
+
+        <hr>
+
+        <!-- Post Content -->
+        <h2> Introduction </h2>
+        <p class="lead">Market Basket Analysis & Association Rules</p>
+
+        <h2>Introduction</h2>
+
+       <p>Imagine where an online e-commerce website delivering everything they can in terms of digital marketing. Leveraging organic, paid, social and other marketing techniques for acquiring consumers to their website, providing the right engaging content to inform the consumers and further converting them to sales with their product detail pages and seamless check out processes. Are there anything else this e-commerce team can do? What if; even though the conversion rate is high but the marketing effort and budget is greater than the sales through their website; should they reduce their digital marketing efforts? Then what if their conversation rates goes down?</p>
+
+       <p>I remember around ten years ago, we would include additional product information to the resolving pages after check out so the users can make additional purchases. Our marketing teams would select these cross selling products based on their domain expertise. They were very meticulous and spend tremendous amount of time and effort on selecting these products, because if they didn't include these additional products, they were leaving a lot sales on the table.</p>
+
+       <p>In this article, we are going to look at the same data set we analyzed for customer segmentation , but this time we are going to create an association rule between the purchased products. An association rule is an implication of the form of X to Y where X is the antecedent and Y is the consequent rule. One of the most common use of association rule is market basket analysis. Simply we want to find the dependency between two items. If people who buy item X typically also buy Y, and if there is a consumer who buys X, but does not buy Y, then that consumer is a potential customer.</p>
+
+       <h2>Data Collection and Cleaning</h2>
+
+       <img class="img-fluid rounded" src="../img/la1.jpg" alt="la1 image">
+
+       <p>As I mentioned earlier, we are using the same data set that we explored in a previous article with customer segmentation. However, this time, instead of focusing on the customers, we will be focusing on transactions(“InvoiceNo”) and items(“StockCode”, “Description”).</p>
+
+       <img class="img-fluid rounded" src="../img/la2.jpg" alt="la2 image">
+
+       <img class="img-fluid rounded" src="../img/la3.jpg" alt="la3 image">
+
+       <img class="img-fluid rounded" src="../img/la4.jpg" alt="la4 image">
+
+       <p>We have some missing values on the “Description” and “CusomterID” variables. We have two options in this case, we can simply remove the missing value observations or keep them as part of our analysis. Since we are looking at the items, description is an important variable for us, however, out of total 541909 observations, 1454 is not that significant. We can keep the missing values as is. We also have some returns (credits), we removed them as those items are not fully purchased by the consumers. In order to see the purchase behavior, we have also added InvoiceDay and Hour variables.</p>
+
+       <h2>Data Exploration</h2>
+
+       <p>When we are looking at the association rule, we are mainly interested in learning if someone purchases X, what is the probability of the same person purchasing Y. This is simply a conditional probability where Y is the product we would like to condition of X. Without going into too many examples around flipping coins, we should consider looking on customer purchase behavior.</p>
+
+       <img class="img-fluid rounded" src="../img/la5.jpg" alt="la5 image">
+
+       <img class="img-fluid rounded" src="../img/la6.jpg" alt="la6 image">
+
+       <img class="img-fluid rounded" src="../img/la7.jpg" alt="la6 image">
+
+       <img class="img-fluid rounded" src="../img/la8.jpg" alt="la6 image">
+
+       <img class="img-fluid rounded" src="../img/la9.jpg" alt="la6 image">
+
+       <img class="img-fluid rounded" src="../img/la10.jpg" alt="la6 image">
+
+       <img class="img-fluid rounded" src="../img/la11.jpg" alt="la6 image">
+
+       <img class="img-fluid rounded" src="../img/la12.jpg" alt="la6 image">
+
+       <p>Looking at our data, we can see that, consumers made the most purchases around 12, 1 and 2 pm in a day, 6th, 7th, 8th and 17th of the month and mostly purchased “World War 2 Glides Asstd Designs”, “Jumbo Bag Red Retrospot” and “PopCorn Holder”. The biggest purchases were from Invoice 541431 and 581483 transactions.</p>
+
+       <h2>Data Preparation for Modeling</h2>
+
+       <p>In order to apply the association rules to our data set, we need to transform the current state of the data to a more transactional base data set. We are focusing on what items are purchased in each transaction. This is where the term “basket” comes in. We need to focus on the unique products within the data set and look at the collection of items in the basket.</p>
+
+       <img class="img-fluid rounded" src="../img/la13.jpg" alt="la6 image">
+
+       <img class="img-fluid rounded" src="../img/la14.jpg" alt="la6 image">
+
+       <img class="img-fluid rounded" src="../img/la15.jpg" alt="la6 image">
+
+       <p>When we transformed our data, we simply defined the columns to identify a product and rows to identify the invoice numbers which are the transactions.</p>
+
+       <p>With building association rules within the products for consumers, we are looking at sets, subsets and supersets. There are unique items in a set, with market basket analysis we are looking at smaller sets that are in the item set. For example, the items in our data set is X={“Bread”, “Butter”, “Cheese”, “Wine”}, Subset of X itemsets are Size 0: {}, Size 1:{“Bread”}, {“Wine”},… Size 2: {“Bread”, “Wine”}…. The supersets of {“Bread”} would be {“Bread”, “Butter”}. Let’s look at the purchases of each transaction.</p>
+
+       <img class="img-fluid rounded" src="../img/la16.jpg" alt="la6 image">
+
+       <h2>Model Development</h2>
+
+       <p>When building association rules, we are looking at three main parameters or measures we use.</p>
+
+       <li>Support of the association rule. X to Y</li>
+
+       <li>Confidence of the association rule. X to Y</li>
+
+       <li>Lift, which is also known as interest of the association rule. X to Y</li>
+
+       <p>Supportsimply indicates the popularity of an itemset. The more the itemset is purchased within the dataset, the more the popularity of that itemset is. It is calculated as the number of transactions the items within the itemset (X and Y for example) purchased, divided by the total number of transactions.</p>
+
+       <p>Confidence simply indicates how often the association rule is true. It is calculated as the number of transactions where the items within the itemset (X and Y for example) purchased, divided by the transactions that contains one of the item in the itemset (for example X). In simple terms, it shows the percentage in which Y is bought with X.</p>
+
+       <p>Lift simply indicates how strong is the association within the rule. It is calculated as Probability of one item(Y) given the condition of another item (X), divided by probability of the one item(Y). If Lift > 1, Y is likely to be bought with X. If Lift < 1, Y is unlikely to be bought with X.</p>
+
+       <p>Confidence is the conditional probability. To be able to state that the rule holds with enough confidence, the confidence value should be close to 1 and significantly larger than probability of purchasing Y. We also want to maximize the support of the rule, because even if number of such customers is small, the rule is invaluable.</p>
+
+       <p>There is a well known and efficient algorithm called Apriori that finds all the rules that has high support and confidence within a large database with small number of passes over the dataset. The algorithm finds association rules in two steps.</p>
+
+       <li>Finds the frequent items which have enough support.</li>
+       <li>Converts them to riles with enough confidence.</li>
+
+       <img class="img-fluid rounded" src="../img/la17.jpg" alt="la6 image">
+
+       <p>The idea of Apriori algorithm is simple. If an itemset is frequent, then all of its subsets must also be frequent. For an infrequent itemset, all its super-sets are infrequent.</p>
+
+       <p>As an example, in our ecommerce dataset, if a consumer purchased ALARM CLOCK BAKE LIKE GREEN kind, we are 65 % confident that they will also purchase ALARM CLOCK BAKE LINE RED. As a parameter in our algorithm, we set the minimum support threshold as 5%. When generating the rules, Apriori starts with the high-confidence rules with single precedent (as seen our “rules” association rules dataframe) and continues to build more complex rules, with more items as consequence.</p>
+
+       <h2>Model Evaluation</h2>
+
+       <p>We have created our model for market basket analysis, using Apriori Algorithm. There are certain parameters we can change an improve, such as minimum threshold on creating the association rules or minimum support on creating the frequent items. We can also define minimum lift and length. However, we should also look at the association rules in detail for the model we created. First aspect we can look at is redundant rules. If a more general rule with the same or a higher confidence rate exist, we can eliminate a rule to avoid redundancy.</p>
+
+       <p>Let’s look at the frequent items and association rules within our basket in detail.</p>
+
+       <img class="img-fluid rounded" src="../img/la18.jpg" alt="la6 image">
+       <img class="img-fluid rounded" src="../img/la19.jpg" alt="la6 image">
+       <img class="img-fluid rounded" src="../img/la20.jpg" alt="la6 image">
+
+       <h2>Conclusion</h2>
+
+       <p>In market basket analysis and creating association rules within the purchased items by consumers, we are not looking at how much consumers purchased, but rather focusing on what they have purchased. In our online retailer data set, we were able to find association rules for antecedents and consequences such as; if a consumer purchased PINK REGENCY TEA CUP AND SAUCER, we are 82% confident that they will also purchase GREEN REGENCY TEA CUP AND SAUCER. We also reviewed the most popular (frequently purchased items), association rules, how often each association rule is used and finally if a consumer purchased an item Y is likely or not likely to purchase with item X.</p>
+
+       <p>There are many uses of association rules in machine learning applications. We reviewed an example on how we can perform Apriori Algorithm for an Online Retailer data set in order to find out the association between products purchased for consumers which can be very useful for cross selling marketing approaches. If this is not an online retailer but a bookseller instead, the approach would be the same. We can apply the same association rules approach for a web portal. In that case, items would be corresponding to links within the web pages and we can predict (estimation) the links a user is likely to click.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        <hr>
+
+        <!-- Comments Form -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <textarea class="form-control" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Single Comment -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          </div>
+        </div>
+
+        <!-- Comment with nested comments -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <!--<div class="col-md-4">
+
+        <!-- Search Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Categories</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">Web Design</a>
+                  </li>
+                  <li>
+                    <a href="#">HTML</a>
+                  </li>
+                  <li>
+                    <a href="#">Freebies</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">JavaScript</a>
+                  </li>
+                  <li>
+                    <a href="#">CSS</a>
+                  </li>
+                  <li>
+                    <a href="#">Tutorials</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Side Widget</h5>
+          <div class="card-body">
+            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+          </div>
+        </div>-->
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

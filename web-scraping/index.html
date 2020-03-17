@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Neal A. Akyildirim - Data Scientist</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/blog-post.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Neal A. Akyildirim -Data Scientist </a>
+      <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-12">
+
+        <!-- Title -->
+        <h1 class="mt-4">Web Scraping Basics</h1>
+
+        <!-- Author -->
+        <p class="lead">
+          
+          <!--<a href="#">Start Bootstrap</a> -->
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on November 1, 2019</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="../img/web1.jpg" alt="web scraping image">
+
+        <hr>
+
+        <!-- Post Content -->
+        <p class="lead">Scraping basics for Data Collection from the Web.</p>
+
+       <p>UNESCO is an organization within the United Nations which fights for the preservation of the world’s natural and cultural heritage. There are many heritage sites around the world including ones that contain natural phenomena such as the Great Barrier Reef. Unfortunately, some of the awarded places are threatened by human intervention. We can deconstruct this human intervention problem with the following questions;</p>
+
+       <li>Which sites are threatened and where are they located?</li>
+
+       <li>Are there regions in the world where sites are more endangered than in others?</li>
+
+       <li>What are the reasons that put a site at risk?</li>
+
+       <p>We can look at Wikipedia to find the list of places to further solve these questions. When we go to https://www.wikipedia.org/ and search “List of World Heritage in Danger” we end up with https://en.wikipedia.org/wiki/List_of_World_Heritage_in_Danger Wikipedia page. In this page, we can see a table with columns that provide us with feature information of sites that are in danger.</p>
+
+       <img class="img-fluid rounded" src="../img/web2.jpg" alt="web2 image">
+
+       <p>In this article, we are going to use R as the programming language in terms of scraping the data from the web and loading into a dataframe. Please keep in mind, the article only provides basic web scraping techniques to give us an idea around the process and possible web scraping solutions.</p>
+
+       <p>We found the data we want to scrape, the next step is to use R to load required into R.</p>
+
+       <img class="img-fluid rounded" src="../img/web3.jpg" alt="web3 image">
+
+       <p>We have a table that we can load to R using readHTMLTable() function from the XML library we have installed earlier.</p>
+
+       <img class="img-fluid rounded" src="../img/web4.jpg" alt="web4 image">
+
+       <p>We are basically telling R that the imported data come in the form of an HTML document. We did this via parser with the function called htmlParse(). With readHTMLTable() function we are telling R to extract all HTML tables it finds in the parsed heritage_parsed object and store them in heritage_tables.</p>
+
+       <p>Now let’s select a table that we can use to get closer to answering the business questions that we have established initially. The table that we want to use, should have the site’s name, location, categorical variable of cultural or natural, year of inscription, and year of endangerment.</p>
+
+       <img class="img-fluid rounded" src="../img/web5.jpg" alt="web5 image">
+
+       <p>We were able to get the data table with the required columns we defined earlier. We can perform simple data cleaning. In order to do that, let's look at the structure of the dataframe.</p>
+
+       <img class="img-fluid rounded" src="../img/web6.jpg" alt="web5 image">
+
+       <p>We have 53 sites and 9 variables. We can see the data type of each variable is not accurate, for example, criteria should be categorical variable between natural or cultural, however in this case we have many factors and the data type is recorded as a character string. We can apply basic cleaning methods to our dataset.</p>
+
+       <img class="img-fluid rounded" src="../img/web7.jpg" alt="web5 image">
+
+       <p>This variable actually contains three different values within one row, it has the sites location, country and the geographic coordinates in several varieties. What we can do is to get the coordinates for the map. We can use again regular expressions to extract this information.</p>
+
+       <img class="img-fluid rounded" src="../img/web8.jpg" alt="web5 image">
+
+       <p>We were able to retrieve the coordinates and corresponding world heritage sites. This completes the web scraping and data preparation process for further analysis.</p>
+
+       <p>The process of web scraping always includes using tools such as parsing and grabbing tables from the web using R or Python Packages. If we want to summarize the technologies for disseminating, extracting and storing web data we can use the below figure.</p>
+
+       <img class="img-fluid rounded" src="../img/web9.jpg" alt="web5 image">
+
+       <p>The most important phase for web scraping is the initial phase where we define the data requirements. What type of data is most suited to answer our business problem in questions? Is the quality of the data sufficiently high to answer our question? Is the information systematically flawed?</p>
+
+       <p>When we grab any data from web, we need to keep in mind the roots of the data. The data might have been collected as part of first party data collection or it can be a secondhand data such as a Twitter post or data that was gathered in an offline environment and posted online manually. However, even if we can't find the source of the data, it makes complete sense for us to use the data that is on the web. The data quality depends on the users purpose and application of the data.</p>
+
+       <p>Web Scraping Basics have 5 steps that we can define and follow.</p>
+
+       <li>Figure out what kind of information you need.</li>
+
+       <li>Find out if you can find data sources on the web that can provide you with the answer to the business problem.</li>
+
+       <li>Create a theory of data generation process when trying to figure out the data sources. (Example: The data set is coming from a sampling program or survey etc…)</li>
+
+       <li>Outline the advantages and disadvantages of the data sources. (Make sure it is legal!)</li>
+
+       <li>Create a decision and if feasible collect the data from different sources to further combine.</li>
+
+
+
+
+        
+        <hr>
+
+        <!-- Comments Form -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <textarea class="form-control" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Single Comment -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          </div>
+        </div>
+
+        <!-- Comment with nested comments -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <!--<div class="col-md-4">
+
+        <!-- Search Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Categories</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">Web Design</a>
+                  </li>
+                  <li>
+                    <a href="#">HTML</a>
+                  </li>
+                  <li>
+                    <a href="#">Freebies</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">JavaScript</a>
+                  </li>
+                  <li>
+                    <a href="#">CSS</a>
+                  </li>
+                  <li>
+                    <a href="#">Tutorials</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Side Widget</h5>
+          <div class="card-body">
+            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+          </div>
+        </div>-->
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

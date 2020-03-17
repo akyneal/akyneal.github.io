@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Neal A. Akyildirim - Data Scientist</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/blog-post.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Neal A. Akyildirim -Data Scientist </a>
+      <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-12">
+
+        <!-- Title -->
+        <h1 class="mt-4">Creating MySQL instance using Google Cloud Platform</h1>
+
+        <!-- Author -->
+        <p class="lead">
+          
+          <!--<a href="#">Start Bootstrap</a> -->
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on October 31, 2019</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="../img/gcp5.jpg" alt="web scraping image">
+
+        <hr>
+
+        <!-- Post Content -->
+        <p class="lead">Creating and Managing MySQL Databases in Google Cloud..</p>
+
+       <p>In this article we are going to summarize how to create an instance of MySQL database using Google Cloud Platform, connect to the created instance from Google’s cloud shell to test it and then connect to the same instance using MySQL workbench on our local machine. There are a lot of ways to work within the databases in the cloud, similar to Microsoft Azure or AWS. In this case we are going to focus on basic Google Cloud Platform and will not include advanced configuration options.</p>
+
+       <li>Go to https://cloud.google.com/ and create a free trial Google Cloud Platform account. This will give 12 month or $300 free credit (whichever comes first)</li>
+
+       <li>Go to https://cloud.google.com/ and go to your console.</li>
+
+       <li>Go to SQL the dashboard section and select create an instance.</li>
+
+       <img class="img-fluid rounded" src="../img/gcp1.jpg" alt="gcp1 image">
+
+       <img class="img-fluid rounded" src="../img/gcp2.jpg" alt="gcp2 image">
+
+       <li>Select Choose Second Generation (Recommended)</li>
+       <li>Create an instance id and root password.</li>
+
+       <img class="img-fluid rounded" src="../img/gcp3.jpg" alt="web3 image">
+
+       <li>Select Create. This will take some time but create the MYSQL instance in Google Cloud Platform.</li>
+
+       <img class="img-fluid rounded" src="../img/gcp4.jpg" alt="web4 image">
+
+       <li>Once it is complete there will be a checkmark next to the instance ID.</li>
+
+       <li>Click on the created MSQL instance.</li>
+
+       <li>Note the Server IP address and Connect Using Cloud Shell. This will take some time to whitelist the client IP address.</li>
+
+       <img class="img-fluid rounded" src="../img/gcp5.jpg" alt="web5 image">
+
+       <li>Cloud Shell will prompt you to enter your password. Upon password entry, the instance connection will be complete. We can further execute SQL statement and access to the MYSQL instance via the Cloud Shell.</li>
+
+       <img class="img-fluid rounded" src="../img/gcp6.jpg" alt="web5 image">
+       <img class="img-fluid rounded" src="../img/gcp7.jpg" alt="web5 image">
+
+       <li>Go to google.com and get the public IP address.</li>
+
+       <img class="img-fluid rounded" src="../img/gcp8.jpg" alt="web5 image">
+
+      <li>Go to the instance details/Connections and add a network and add this IP address under the network name and click save.</li>
+
+       <img class="img-fluid rounded" src="../img/gcp9.jpg" alt="web5 image">
+
+       <li>Go to MYSQL workbench in local machine.</li>
+
+       <img class="img-fluid rounded" src="../img/gcp10.jpg" alt="web5 image">
+
+       <p>We were able to retrieve the coordinates and corresponding world heritage sites. This completes the web scraping and data preparation process for further analysis.</p>
+
+       <li>Create a new connection.</li>
+
+       <li>Add Connection Name</li>
+
+       <li>Update the hostname with the noted Server IP address from step 10.</li>
+
+       <li>Create username and best practice to create non root password.</li>
+
+       <li>Keep the default schema.</li>
+
+
+       <img class="img-fluid rounded" src="../img/gcp11.jpg" alt="web5 image">
+       <img class="img-fluid rounded" src="../img/gcp12.jpg" alt="web5 image">
+
+       <li>Test Connection will prompt you to enter the password. Enter your instance password.</li>
+
+       <img class="img-fluid rounded" src="../img/gcp13.jpg" alt="web5 image">
+
+       <li>Successfully made the MySQL connection should display. Click Ok.</li>
+
+       <img class="img-fluid rounded" src="../img/gcp14.jpg" alt="web5 image">
+
+       <li>The Google Cloud Platform MYSQL is created and connected to local MySQL workbench.</li>
+
+       <img class="img-fluid rounded" src="../img/gcp15.jpg" alt="web5 image">
+
+       <p>The process is very straightforward and easy to follow. We can further create relational databases and tables, perform queries from our local MySQL workbench with GCP instance. We can also load any of the tables created within the database to our local R or Python and perform analysis.</p>
+
+
+
+
+        
+        <hr>
+
+        <!-- Comments Form -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <textarea class="form-control" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Single Comment -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          </div>
+        </div>
+
+        <!-- Comment with nested comments -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <!--<div class="col-md-4">
+
+        <!-- Search Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Categories</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">Web Design</a>
+                  </li>
+                  <li>
+                    <a href="#">HTML</a>
+                  </li>
+                  <li>
+                    <a href="#">Freebies</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">JavaScript</a>
+                  </li>
+                  <li>
+                    <a href="#">CSS</a>
+                  </li>
+                  <li>
+                    <a href="#">Tutorials</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Side Widget</h5>
+          <div class="card-body">
+            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+          </div>
+        </div>-->
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Neal A. Akyildirim - Data Scientist</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/blog-post.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Neal A. Akyildirim -Data Scientist </a>
+      <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-12">
+
+        <!-- Title -->
+        <h1 class="mt-4">Retail Customer Analysis</h1>
+
+        <!-- Author -->
+        <p class="lead">
+          
+          <!--<a href="#">Start Bootstrap</a> -->
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on January 16, 2020</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="../img/retail-customer-analysis.jpg" alt="retail customer analysis image">
+
+        <hr>
+
+        <!-- Post Content -->
+        <h2> Introduction </h2>
+        <p class="lead">Online Retailer Customer Segmentation and Analysis</p>
+
+       <p>In this article, we are going to perform an exploratory analysis for an online retail store data set, in order to understand its customers. Let’s assume, we own a retail store that has been doing incredibly well and we want to find a way to scale our business efficiently and effectively. In order to do this, we need to make sure we understand our customers and customize our marketing or expansion efforts based on specific subset of our customers. The main business problem in question in this case is “How can I scale my current business that is doing really well, in the most effective way?”. The sub question that might follow to support the main business objectives can be “What type of marketing initiatives can we perform for each customer in order to get the best ROI?”.</p>
+
+       <h2>About the Data</h2>
+
+       <p>The dataset is a very common one that can be found in many publicly available data sources and intended to be used as an example online retail store data. The descriptions of each variable is straightforward and self explanatory.</p>
+
+       <h2>Data Collection and Cleaning</h2>
+
+       <img class="img-fluid rounded" src="../img/retail1.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/retail2.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/retail3.jpg" alt="lin3 image">
+
+       <p>There are 1454 missing “Description” and 135,080 missing “CustomerID” values. Keeping the missing “Description” values won’t have any impact on the analysis as we will be focusing on understanding our customers. Based on the assumption that each missing “CustomerID” represents a new customer (meaning the missing “CustomerID” values are unique to the dataset), we can also assume that the “CustomerID” missing values wont have any impact to our analysis as well.</p>
+
+       <p>We notice that the “InvoiceDate” data type is object and requires to be updated to date data type. We can also take the month and the year from the “InvoiceDate” variable and create new columns with “InvoiceMonth” and “InvoiceYear”.</p>
+
+       <img class="img-fluid rounded" src="../img/retail4.jpg" alt="lin3 image">
+
+       <p>We loaded and performed minor cleaning on our online store data set. We can further analyze the customers.</p>
+
+       <h2>Data Exploration</h2>
+
+       <p>Initially we are going to perform basic exploratory statistical analysis in order to understand the variable distribution. Further we will look at how we are doing in terms of revenue within the customers. Revenue is one of the most common and important metrics when it comes to online retail store business models. We would want to make sure our revenue is growing as we are defining scalability within our business.</p>
+
+       <img class="img-fluid rounded" src="../img/retail5.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/retail6.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/retail7.jpg" alt="lin3 image">
+
+       <p>When we look at the monthly revenue growth, we realize that our data set starts in December 2010 and goes all the way to December 2011. We notice that the revenue slumps around December 2011. We need to see if this is due to customers not purchasing our merchandise or if it is related to an issue within the dataset.</p>
+
+       <img class="img-fluid rounded" src="../img/retail8.jpg" alt="lin3 image">
+
+       <p>Based on the december 2011 data, we understand that the data set does not include any purchases after December 9th 2011. We need to make sure, we consider this within our analysis and conclusion.</p>
+
+       <p>On a separate note; we can see that the revenue grows steadily starting from September 2011 all the way up to December 2011, November being the best month in terms of revenue.</p>
+
+       <img class="img-fluid rounded" src="../img/retail9.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/retail10.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/retail11.jpg" alt="lin3 image">
+
+       <p>As expected, the monthly items sold, monthly active users and average revenue per month shows positive correlation with the monthly revenue growth.</p>
+
+       <img class="img-fluid rounded" src="../img/retail12.jpg" alt="lin3 image">
+
+       <p>In most cases, with the exception of the level, we see alignment on positive and negative revenue growth for new and existing customers. However, when we look at the revenue from January to February and October to November of 2011, we see that even though existing customer revenue grows, the new customer revenue declines.</p>
+
+       <h2>Customer Segmentation</h2>
+
+       <p>We analyzed our customers based on revenue, activity, new and existing customer monthly revenue and we definitely have some insights that we can take action from. We can also segment our customers in order to target our actions based on the main business problem we are working to solve.</p>
+
+       <p>We are going to use the RFM (Recency, Frequency and Monetary Value) strategy to analyze and estimate value of each customer and further segment them accordingly. Looking at Recency gives us how recently customers make a purchase, Frequency, how often they make a purchase, and Monetary Value shows us how often do they spend.</p>
+
+       <img class="img-fluid rounded" src="../img/retail13.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/retail14.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/retail15.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/retail16.jpg" alt="lin3 image">
+
+       <p>We segmented our customers into 4 different clusters which are from 0 to 4. We have 524 customers in Cluster 0, 2157 customers in Cluster 1, 632 customers in Cluster 2 and 1059 Customers in Cluster 3. When we compare the recency, the cluster 0 is the best performing customer set and cluster 1 is the worst performing cluster set.</p>
+
+       <p>We can further look at frequency and segment customers based on how often do they purchase.</p>
+
+       <img class="img-fluid rounded" src="../img/retail17.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/retail18.jpg" alt="lin3 image">
+
+       <p>Cluster 0 has the most customers and Cluster 2 has the least based on Frequency. Based on this segmentation we see that cluster 0 has the least frequency customers however has the most amount of customers.</p>
+
+       <p>Finally, we can segment our customers based on their monetary value.</p>
+
+       <img class="img-fluid rounded" src="../img/retail19.jpg" alt="lin3 image">
+       <img class="img-fluid rounded" src="../img/retail20.jpg" alt="lin3 image">
+
+       <h2>Conclusion</h2>
+
+       <p>With the recency, frequency, monetary value segmentation and our exploratory analysis of our customers, we can further decide our purchase cycle of our products, prioritize and define our marketing campaigns. For example, we can look at our current marketing campaigns, inventory purchase strategies and operations for the months of January and October to see if we can entice more new users in order to turn the negative revenue growth of new users to positive. We can investigate the historical marketing campaigns in order to see what impact they provide for each recency and frequency clusters. We can further apply this to our main business goal to scale the business. We can also assign a 1–10 score for each category of RFM. For example customer will get a recency score of 1 if they haven't made a purchase for a year and gets a recency score of 10 if they made a purchase within the last month. We can further add all these scores for each category and create a customer value for each cluster. These actions will contribute drastically to our success for scalability of our business.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+        <hr>
+
+        <!-- Comments Form -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <textarea class="form-control" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Single Comment -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          </div>
+        </div>
+
+        <!-- Comment with nested comments -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <!--<div class="col-md-4">
+
+        <!-- Search Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Categories</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">Web Design</a>
+                  </li>
+                  <li>
+                    <a href="#">HTML</a>
+                  </li>
+                  <li>
+                    <a href="#">Freebies</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">JavaScript</a>
+                  </li>
+                  <li>
+                    <a href="#">CSS</a>
+                  </li>
+                  <li>
+                    <a href="#">Tutorials</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Side Widget</h5>
+          <div class="card-body">
+            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+          </div>
+        </div>-->
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

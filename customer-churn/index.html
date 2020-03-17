@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Neal A. Akyildirim - Data Scientist</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/blog-post.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Neal A. Akyildirim -Data Scientist </a>
+      <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-12">
+
+        <!-- Title -->
+        <h1 class="mt-4">Customer Churn</h1>
+
+        <!-- Author -->
+        <p class="lead">
+          
+          <!--<a href="#">Start Bootstrap</a> -->
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on January 10, 2020</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="../img/customer-churn.jpg" alt="customer churn">
+
+        <hr>
+
+        <!-- Post Content -->
+        <h2> Introduction </h2>
+        <p class="lead">Brief Overview of Customer Churn Analysis and Prediction with Decision Tree Classifier.</p>
+
+       <p>Customer Churn is one of the most important and challenging problems for businesses such as Credit Card companies, cable service providers, SASS and telecommunication companies worldwide. Even though it is not the most fun to look at, customer churn metrics can help businesses improve customer retention.</p>
+
+       <p>We can classify customer churn (also known as customer attrition) by grouping them into different categories. Contractual Churn, which is applicable to businesses such as cable companies and SAAS service providers, is when customers decide not to continue with their expired contracts. Voluntary Churn, on the other hand, is when a customer decides to cancel their existing service, which can be applicable for companies such as prepaid cellphones and streaming subscription providers. There are also times when consumers leave a possible purchase without completing the transaction. We can categorize these instances as non-contractual churn, which is applicable for businesses that rely on retail locations, online stores or online borrowing services. And lastly, there is the involuntary churn, for instance where a customer can not pay their credit card bill and no longer stays with the credit card company.</p>
+
+       <p>The reasoning of customer churn can vary and would require domain knowledge in order to define properly, however some common ones are; lack of usage of the product, poor service and better price somewhere else. Regardless of the reasoning that can be specific for different industries, one thing applies for every domain is, it costs more to acquire new customers than it does to retain existing ones. This has a direct impact on operating costs and marketing budgets within the company.</p>
+
+       <p>Because of the significant importance of customer churn within a business, stakeholders are investing more time and effort in finding out the reasoning within their organizations, how they can accurately predict the type of existing customers that can stop doing business with them and what they can do to minimize the customer churn.</p>
+
+       <p>The best way to avoid customer churn is to know your customers, and the best way to know your customer is through historical and new customer data.</p>
+
+       <p>In this article, we will go through some consumer data and see how we can leverage data insights and predictive modeling in order to improve customer retention. In our analysis, we will use Python and variety of Machine Learning algorithms for prediction.</p>
+
+       <p>Our first customer data set is from a credit card company, where we are able review customer attributes such as gender, age, tenure, balance, number of products they are subscribed to, their estimated salary and if they stopped the subscription or not.</p>
+
+       <img class="img-fluid rounded" src="../img/churn1.jpg" alt="churn1 image">
+
+       <p>We can see our dataset but we also want to make sure the data is clean, so as part of the cleaning process, we look at missing values and data types.</p>
+
+       <img class="img-fluid rounded" src="../img/churn2.jpg" alt="churn2 image">
+       <img class="img-fluid rounded" src="../img/churn3.jpg" alt="churn3 image">
+
+       <p>When we look at the statistical insights, we see that the average age of our customers is 39, the average month customer has been a member is 5 and the estimated average salary is 100K.</p>
+
+       <img class="img-fluid rounded" src="../img/churn4.jpg" alt="churn4 image">
+
+       <p>When we look at the gender and geographic distribution of estimated salary, we see that male customer estimated average salary is higher than females in France and Spain, however in Germany female customers’ estimated average salary is higher.</p>
+
+       <img class="img-fluid rounded" src="../img/churn5.jpg" alt="churn4 image">
+
+       <p>When we look at the relationship between age and credit score, the linear relationship is very weak in order to clearly define correlation.</p>
+
+       <img class="img-fluid rounded" src="../img/churn6.jpg" alt="churn4 image">
+
+       <p>Based on our basic exploratory analysis, we can define the important customer attributes that can give us the best insight in order to predict the type of customers that can churn. We can continue this analysis to answer some basic questions such as, “Does lower estimated salary increase churn?” Or “Does lower Credit Score increase churn?” and so on. We can group and summarize the dataset in different ways to gain more insights from customer attributes. We will dive into more of these in the next dataset. For now, lets start thinking about predicting which customers will churn.</p>
+
+       <p>In this case, we can label our target (response) variable which is churn. This means we can create a classification model and perform different algorithm methods such as Decision Tree, Random Forest, Logistic Regression or Support Vector Machines. When it comes to machine learning models, we are looking for two main conditions; 1- Normal Distribution of the feature set, 2- Same Scale of the feature set.</p>
+
+       <p>In this dataset, we can select credit score, geography, gender, age, tenure and estimated salary attributes as the feature set and churn as the target variable.</p>
+
+       <img class="img-fluid rounded" src="../img/churn7.jpg" alt="churn4 image">
+
+       <p>We have to make sure we update the categorical variables to numerical variables as the machine learning techniques we will apply requires all customers attributes to be numerical.</p>
+
+       <img class="img-fluid rounded" src="../img/churn8.jpg" alt="churn4 image">
+
+       <p>We can further randomly split our dataset to training and testing dataset in order to fit our model with training dataset and test the predictions with the testing dataset. The idea is to train the model with the training dataset and test the prediction with the test dataset. If we didn’t use training and testing datasets and used the entire dataset instead, the algorithm will only make accurate predictions with our dataset and will fail with any new data that gets fed to it.</p>
+
+       <img class="img-fluid rounded" src="../img/churn9.jpg" alt="churn4 image">
+
+       <p>In this dataset, let’s use DecisionTreeClassifier and RandomForestClassifier to create our model and prediction, further evaluate them both to see which one is better.</p>
+
+       <img class="img-fluid rounded" src="../img/churn10.jpg" alt="churn4 image">
+       <img class="img-fluid rounded" src="../img/churn11.jpg" alt="churn4 image">
+
+       <p>Based on the metrics evaluations, while 73% of the predictions would be accurate with the Decision Classifier Model, 82% of the predictions would be accurate with the RandomForestClassifier. We would prefer to use Random Forest in this case.</p>
+
+       <p>When we look at the distribution of the customers that churn vs not churn, we see that the data is impartial. This means we can’t just rely on accuracy metric scores for the prediction models. Let’s look at the second customer data set to see if we can do better analysis and prediction models.</p>
+
+       <p>This time we are looking at a telecommunication company and it’s existing customer attributes such as their current plan, charges, location in terms of state, amount of customer service calls, account length and churn.</p>
+
+       <img class="img-fluid rounded" src="../img/churn12.jpg" alt="churn4 image">
+
+       <p>There are no missing data within the dataset and data types are correct. Let’s look at the categorical values and their unique values.</p>
+
+       <img class="img-fluid rounded" src="../img/churn13.jpg" alt="churn4 image">
+
+       <p>When we look at the state and churn we see that California and New Jersey are the top to states with the highest churn rate.</p>
+
+       <img class="img-fluid rounded" src="../img/churn14.jpg" alt="churn4 image">
+
+       <p>We also see that the churn rate is higher with the international plan customers and lower with the customers that have voice mail plan.</p>
+
+       <p>There are much more customers that are staying with the company than leaving the company as a customer. If you remember the earlier analysis with the credit card company, this means imbalances in the data and has an impact on the prediction model development. (One important aspect we did not mention earlier is that we have no use for unique identifiers such as phone number, customer id or account number for feature selection.)</p>
+
+       <p>Poor customer service is one of the well-known reasons for customer churn. In our case, we can see a strong positive linear relationship with the customer service call amount and churn rate.</p>
+
+       <img class="img-fluid rounded" src="../img/churn15.jpg" alt="churn4 image">
+
+       <p>With this dataset, let’s develop multiple different models and evaluate them to see which one would be the best fit to solve our business problem of customer churn.</p>
+
+       <img class="img-fluid rounded" src="../img/churn16.jpg" alt="churn4 image">
+
+       <p>Similar to the earlier credit card customer data set, we need to perform preprocessing and update the categorical variables to numeric variables in order to create our model.</p>
+
+       <img class="img-fluid rounded" src="../img/churn17.jpg" alt="churn4 image">
+
+       <p>Now we are ready to split the dataset to train/test and create our models. Let’s start with Random Forest.</p>
+
+       <img class="img-fluid rounded" src="../img/churn18.jpg" alt="churn4 image">
+
+       <p>Our accuracy score for Random Forest Model we created for predicting churn of the telecommunication company customers is 0.89. However, we should look analyze this further as the data is impartial.</p>
+
+       <p>We can review additional evaluation metrics, such as cross validation matrix which will give us the amount of true positives, false positives, true and false negatives, precision, recall and f1 score. We can also see what we can do improve the model by looking at what features contributes the most to the prediction.</p>
+
+       <img class="img-fluid rounded" src="../img/churn19.jpg" alt="churn4 image">
+
+       <p>The model predicts 560 True Negatives, 13 False Positives, 54 False Negatives, 40 True Positives.</p>
+
+       <img class="img-fluid rounded" src="../img/churn20.jpg" alt="churn4 image">
+
+       <p>When we evaluate the model with Random Forest Classifier, we see that: Precision score is 0.729, Recall score is 0.372, ROC curve is follows:</p>
+
+       <img class="img-fluid rounded" src="../img/churn21.jpg" alt="churn4 image">
+
+       <p>AUC score (the area under the roc curve) is 0.83 and f1 score is 0.49.</p>
+
+       <p>We also find out that, to get the best performance from the model, we need to set the n estimator to 30. (Currently, our model uses 100)</p>
+
+       <p>We can further look at the feature importance to see what features have the most impact on the prediction.</p>
+
+       <img class="img-fluid rounded" src="../img/churn22.jpg" alt="churn4 image">
+
+       <p>Best on the feature importance, we can definitely remove state from our model.</p>
+
+       <p>Let’s create another model using Support Vector Machine.</p>
+
+       <img class="img-fluid rounded" src="../img/churn23.jpg" alt="churn4 image">
+
+       <p>When we create the model and look at the accuracy, we already see that the accuracy score for Support Vector Machine is lower than Random Forest Classification.</p>
+
+       <img class="img-fluid rounded" src="../img/churn24.jpg" alt="churn4 image">
+
+       <p>When we create the model and look at the accuracy, we already see that the accuracy score for Support Vector Machine is lower than Random Forest Classification.</p>
+
+       <img class="img-fluid rounded" src="../img/churn25.jpg" alt="churn4 image">
+
+       <p>The model predicts 567 True Negatives, 6 False Positives, 83 False Negatives, 11 True Positives. Even though the False Positive count slightly went down, the True Positives are significantly less compared to RandomForestClassifier.</p>
+
+       <img class="img-fluid rounded" src="../img/churn26.jpg" alt="churn4 image">
+
+       <p>Both the precision score(0.647) and recall score(0.11) is much lower than the Random Classifier. The area under the roc curve (auc) is 0.83 which is the same as the Random Forest Classifier. The best option for Support Vector Machine degree is 1. (which is currently set as the default value of 3).</p>
+
+       <p>Based on the two predictive models we created the first one we created with Random Forest Classifier would be a better choice. We can also tune this model and improve it by updating the n_estimator and removing state variable from the feature set for better prediction.</p>
+
+       <p>With the existing consumer insights through data, companies can predict customers’ possible needs and issues, define proper strategies and solutions against them, meet their expectations and retain their business. Based on the predictive analysis and modeling, businesses can focus their attention with targeted approach by segmenting and offering them customized solutions. Analyzing how and when the churn is happening in customer’s lifecycle with the services will allow the company to come up with more preemptive measures.</p>
+
+
+
+
+       
+
+
+
+
+
+
+
+
+        
+        <hr>
+
+        <!-- Comments Form -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <textarea class="form-control" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Single Comment -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          </div>
+        </div>
+
+        <!-- Comment with nested comments -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <!--<div class="col-md-4">
+
+        <!-- Search Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Categories</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">Web Design</a>
+                  </li>
+                  <li>
+                    <a href="#">HTML</a>
+                  </li>
+                  <li>
+                    <a href="#">Freebies</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">JavaScript</a>
+                  </li>
+                  <li>
+                    <a href="#">CSS</a>
+                  </li>
+                  <li>
+                    <a href="#">Tutorials</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Side Widget</h5>
+          <div class="card-body">
+            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+          </div>
+        </div>-->
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
