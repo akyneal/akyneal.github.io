@@ -105,15 +105,15 @@
 
         <p>Ideally, prior to the data collection phase, we would have liked to define the data requirements based on problem statement in order to collect the needed data. However, we are executing a different approach in this case, where we really don't know what problems instacart business have and we want to formulate problems with the available data. This is completely different from a data science project process perspective, where we usually want to outline business understanding with the domain experts and stakeholders as a first step and further define collection methods, data collecting, cleaning and exploratory analysis. Let’s start with importing our packages, load each data set and take a brief look at them.</p>
 
-        <img class="img-fluid rounded" src="img/code1.jpg" alt="code1 image">
+        <img class="img-fluid rounded" src="../img/code1.jpg" alt="code1 image">
 
-        <img class="img-fluid rounded" src="img/code2.jpg" alt="code2 image">
+        <img class="img-fluid rounded" src="../img/code2.jpg" alt="code2 image">
 
-        <img class="img-fluid rounded" src="img/code3.jpg" alt="code3 image">
+        <img class="img-fluid rounded" src="../img/code3.jpg" alt="code3 image">
 
-        <img class="img-fluid rounded" src="img/code4.jpg" alt="code4 image">
+        <img class="img-fluid rounded" src="../img/code4.jpg" alt="code4 image">
 
-        <img class="img-fluid rounded" src="img/code5.jpg" alt="code4 image">
+        <img class="img-fluid rounded" src="../img/code5.jpg" alt="code4 image">
 
 
 
@@ -126,21 +126,21 @@
 
         <p>We have around 50,000 products with product id, name, aisle id and department id. All data types are as expected and we don't have any missing values.</p>
 
-        <img class="img-fluid rounded" src="img/code6.jpg" alt="code5 image">
+        <img class="img-fluid rounded" src="../img/code6.jpg" alt="code5 image">
 
 
 
         <p>There are 134 aisles with aisle id and aisle name. The data types are as expected and we don't have any missing values. As you may notice, aisle_id variable is a common variable with products dataframe. We can merge these two dataframes to see what products belong to what aisle.</p>
 
-        <img class="img-fluid rounded" src="img/code7.jpg" alt="code7 image">
+        <img class="img-fluid rounded" src="../img/code7.jpg" alt="code7 image">
 
         <p>There is a total of 21 departments with department names and ids. The data types are as expected and we don't have any missing values. We have another common variable “department_id” with products dataframe. We can merge the departments dataframe to see what product belongs to which department.</p>
 
-        <img class="img-fluid rounded" src="img/code8.jpg" alt="code8 image">
+        <img class="img-fluid rounded" src="../img/code8.jpg" alt="code8 image">
 
         <p>As explained in the variable descriptions, order products prior data set gives us the insights on the orders that are ordered prior to users most recent order. We have over 3 million of these orders. The data types are correct and there are no missing values. We also have product_id common variable where we can merge this dataset with products to see what product maps to what order.</p>
 
-        <img class="img-fluid rounded" src="img/code9.jpg" alt="code9 image">
+        <img class="img-fluid rounded" src="../img/code9.jpg" alt="code9 image">
 
         <p>We have been provided over 1.3 million training data, with correct data types and no missing values. At this point, the data sets provided by instacart seems to be pretty clean and besides merging aisles, departments, products and orders data sets, we didn't need to do much of data wrangling.</p>
 
@@ -148,64 +148,64 @@
 
         <p>At this stage, we will look at the updated version of the data set individually, and gather insights to start creating possible business problems.</p>
 
-        <img class="img-fluid rounded" src="img/code10.jpg" alt="code10 image">
+        <img class="img-fluid rounded" src="../img/code10.jpg" alt="code10 image">
 
-        <img class="img-fluid rounded" src="img/code11.jpg" alt="code11 image">
+        <img class="img-fluid rounded" src="../img/code11.jpg" alt="code11 image">
 
         <p>What we are seeing here is that 23986 customers made only 4 orders, 19590 customers only made 5 orders and so on… As the number of orders made by customers goes up, the number of customers that makes those orders goes down. Majority of the customers make 4 to 12 orders. If a business finds a way to increase the number of orders from repeat customers, it can increase the revenue.</p>
 
-        <img class="img-fluid rounded" src="img/code12.jpg" alt="code12 image">
+        <img class="img-fluid rounded" src="../img/code12.jpg" alt="code12 image">
 
-        <img class="img-fluid rounded" src="img/code13.jpg" alt="code13 image">
+        <img class="img-fluid rounded" src="../img/code13.jpg" alt="code13 image">
 
         <p>Majority of the purchases are being made on Monday and Tuesday followed by Sunday. Consumers might be making their weekly grocery shopping at the first and second day of the week. There isn't a huge gap between the other days of the week either. For example, the difference between Wednesday and Tuesday is not that significant.</p>
 
-        <img class="img-fluid rounded" src="img/code14.jpg" alt="code14 image">
+        <img class="img-fluid rounded" src="../img/code14.jpg" alt="code14 image">
 
         <p>Majority of the purchases are made between 10am to 4pm.</p>
 
-        <img class="img-fluid rounded" src="img/code15.jpg" alt="code15 image">
+        <img class="img-fluid rounded" src="../img/code15.jpg" alt="code15 image">
 
-        <img class="img-fluid rounded" src="img/code16.jpg" alt="code16 image">
+        <img class="img-fluid rounded" src="../img/code16.jpg" alt="code16 image">
 
         <p>Majority of the customers do their purchases weekly and monthly. Considering the fact that majority of the customers also place their orders Monday or Tuesday of the week, placing an order might require planning effort. There is a slight chance this might be due to a non seamless ordering process.</p>
 
-        <img class="img-fluid rounded" src="img/code17.jpg" alt="code17 image">
+        <img class="img-fluid rounded" src="../img/code17.jpg" alt="code17 image">
 
-        <img class="img-fluid rounded" src="img/code18.jpg" alt="code18 image">
+        <img class="img-fluid rounded" src="../img/code18.jpg" alt="code18 image">
 
         <p>We can see that, based on the basket size distribution, the majority of the customers purchased 5 to 6 products per order. Considering the low amount of orders from repeat customers, low product amount per customer can be a huge problem for the business in terms of revenue.</p>
 
-        <img class="img-fluid rounded" src="img/code19.jpg" alt="code19 image">
+        <img class="img-fluid rounded" src="../img/code19.jpg" alt="code19 image">
 
-        <img class="img-fluid rounded" src="img/code20.jpg" alt="code20 image">
+        <img class="img-fluid rounded" src="../img/code20.jpg" alt="code20 image">
 
-        <img class="img-fluid rounded" src="img/code21.jpg" alt="code21 image">
+        <img class="img-fluid rounded" src="../img/code21.jpg" alt="code21 image">
 
-        <img class="img-fluid rounded" src="img/code22.jpg" alt="code22 image">
+        <img class="img-fluid rounded" src="../img/code22.jpg" alt="code22 image">
 
-        <img class="img-fluid rounded" src="img/code23.jpg" alt="code23 image">
+        <img class="img-fluid rounded" src="../img/code23.jpg" alt="code23 image">
 
         <p>Top ten reordered items match exactly to the top ten items ordered in general. Additionally, most of the items on top ten purchases are in the fresh fruits aisle.</p>
 
-        <img class="img-fluid rounded" src="img/code24.jpg" alt="code24 image">
+        <img class="img-fluid rounded" src="../img/code24.jpg" alt="code24 image">
 
-        <img class="img-fluid rounded" src="img/code25.jpg" alt="code25 image">
+        <img class="img-fluid rounded" src="../img/code25.jpg" alt="code25 image">
 
         <p>Top aisles are fresh fruits, fresh vegetables, packaged vegetables and fruit, followed by yogurt and packaged cheese.</p>
 
-        <img class="img-fluid rounded" src="img/code26.jpg" alt="code26 image">
-        <img class="img-fluid rounded" src="img/code27.jpg" alt="code27 image">
+        <img class="img-fluid rounded" src="../img/code26.jpg" alt="code26 image">
+        <img class="img-fluid rounded" src="../img/code27.jpg" alt="code27 image">
 
         <p>As we figured out earlier, the highest percentage of orders and the highest basket size is Monday and Tuesday.</p>
 
-        <img class="img-fluid rounded" src="img/code28.jpg" alt="code28 image">
-        <img class="img-fluid rounded" src="img/code29.jpg" alt="code29 image">
+        <img class="img-fluid rounded" src="../img/code28.jpg" alt="code28 image">
+        <img class="img-fluid rounded" src="../img/code29.jpg" alt="code29 image">
 
         <p>As we found out earlier, the highest ordered products are Banana, Bag of Organic Bananas, Organic Baby Spinach and Organic Strawberries. Interesting insight here is that, out of the top 4 products, Banana has the most proportion of orders in a day for every but the other four top products do not have any contribution to the proportion of orders on Wednesday, Thursday, Friday, Saturday and Sunday. Can this be related to an item inventory issue?</p>
 
-        <img class="img-fluid rounded" src="img/code30.jpg" alt="code30 image">
-        <img class="img-fluid rounded" src="img/code31.jpg" alt="code31 image">
+        <img class="img-fluid rounded" src="../img/code30.jpg" alt="code30 image">
+        <img class="img-fluid rounded" src="../img/code31.jpg" alt="code31 image">
 
         <p>The top department is produce, followed by dairy eggs and snacks. Addition to the general individual preference and needs, there might be other reasons why consumers are not purchasing from other departments. For example, if instacart has the biggest mark up for canned goods, but the user experience within the instacart website or app does not entice the consumer for canned goods, regardless of the consumer needs the order amount on canned goods will be low.</p>
 
