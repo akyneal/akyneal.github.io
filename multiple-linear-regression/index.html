@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Neal A. Akyildirim - Data Scientist -</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/blog-post.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Neal A. Akyildirim -Data Scientist - </a>
+      <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div> -->
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-12">
+
+        <!-- Title -->
+        <h1 class="mt-4">Multiple Linear Regression </h1>
+
+        <!-- Author -->
+        <p class="lead">
+          
+          <!--<a href="#">Start Bootstrap</a> -->
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+        <p>Posted on March 10, 2020</p>
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src="../img/multiple-linear.jpg" alt="instacart image">
+
+        <hr>
+
+        <!-- Post Content -->
+        <h2> Introduction </h2>
+        <p class="lead">Summary of Linear Regression Model Development Process.</p>
+
+        <h2>Introduction</h2>
+
+        <p>The purpose of this article is to summarize the steps that needs to be taken in order to create multiple Linear Regression model by using basic example data set. Depending on the explanatory and descriptive analysis, many different steps might be included in the process. Hence, the article may not cover certain aspects of linear regression in detail with an example, such as regularization with Ridge, Lasso or Elastic Net or log transformation. Having said that, I will do my best to explain all possible steps from data transformation, exploration to model selection and evaluation. The idea is, when we have a business problem that we can be solved with creating linear regression model, we can reference this article to cover majority of the steps within the process.</p>
+
+        <p>The data set that we are going to use is a well known and has been referenced in academic programs for Statistics and Data Science. The most popular reference to this data set comes from the movie “Moneyball”. It provides us the performance of the baseball team for the given year. The problem statement for the analysis is “Can we predict the number of wins for the team with the given attributes of each record of team performance?”</p>
+
+        <p>The dataset is provided by Instacart for a Kaggle Competition, which are relational set of files describing customers’ orders over time. The dataset is anonymized and contains a sample of over 3 million grocery orders from more than 200,000 Instacart users. For each user, the dataset provides between 4 and 100 of their orders, with the sequence of products purchased in each order. The dataset also provides the week and hour of day the order was placed and relative measure of time between orders.</p>
+
+        <p>The description of each variable is outlined below;</p>
+
+        <p>INDEX: Identification Variable(Do not use)</p>
+
+        <p>TARGET_WINS: Number of wins</p>
+
+        <p>TEAM_BATTING_H : Base Hits by batters (1B,2B,3B,HR)</p>
+
+        <p>TEAM_BATTING_2B: Doubles by batters (2B)</p>
+
+        <p>TEAM_BATTING_3B: Triples by batters (3B)</p>
+
+        <p>TEAM_BATTING_HR: Homeruns by batters (4B)</p>
+
+        <p>TEAM_BATTING_BB: Walks by batters</p>
+
+        <p>TEAM_BATTING_HBP: Batters hit by pitch (get a free base)</p>
+
+        <p>TEAM_BATTING_SO: Strikeouts by batters</p>
+
+        <p>TEAM_BASERUN_SB: Stolen bases</p>
+
+        <p>TEAM_BASERUN_CS: Caught stealing</p>
+
+        <p>TEAM_FIELDING_E: Errors</p>
+
+        <p>TEAM_FIELDING_DP: Double Plays</p>
+
+        <p>TEAM_PITCHING_BB: Walks allowed</p>
+
+        <p>TEAM_PITCHING_H: Hits allowed</p>
+
+        <p>TEAM_PITCHING_HR: Homeruns allowed</p>
+
+        <p>TEAM_PITCHING_SO: Strikeouts by pitchers</p>
+
+        <p>Let’s get started by importing by loading our dataset,packages and some descriptive analysis.</p>
+
+
+
+        <img class="img-fluid rounded" src="../img/multi1.jpg" alt="multi1 image">
+
+        <p>The basic descriptive statistics provide us some insights around each team’s performance. However, most important statistical information that we need from the dataset are, missing values, the distribution of each variable, correlation between the variables, skewness of each distribution and outliers in each variable. With these insights, we will transform our dataset and make sure the conditions for linear regression are met.</p>
+
+        <p>First let’s drop the INDEX column and find the missing_values for each variable.</p>
+
+        <img class="img-fluid rounded" src="../img/multie2.jpg" alt="multi2 image">
+
+        <p>The data type of each variable looks accurate and does not need modifying. When we look at the percentage of missing values for each variable, the top two variables are TEAM_BASERUN_CS and TEAM_BATTING_HBP. Most common method for dealing with missing values when we have more than 80% missing data is to drop and not include that particular variable to the model. So, we will drop TEAM_BATTING_HBP in our data cleaning phase. As for the rest of the variables that has missing values, we will replace them with the mean of that particular variable.</p>
+
+        <p>Let’s look at the correlation between the explanatory and response variables.</p>
+
+        <img class="img-fluid rounded" src="../img/multi3.jpg" alt="multi3 image">
+
+        <img class="img-fluid rounded" src="../img/multi4.jpg" alt="multi4 image">
+
+        <p>Based on the correlation matrix, we can see that top correlated attributes with our response variable TARGET_WINS for a baseball team are base hits by batters and walks by batters. (TEAM_BATTING_H , TEAM_BATTING_2B)</p>
+
+        <p>We also see that, there is a strong correlation between Team_Batting_H and Team_Batting_2B, Team_Pitching_B and TEAM_FIELDING_E. We will consider these findings on model creation as collinearity might complicate model estimation. We want to have explanatory variables to be independent from each other. We will try to avoid adding explanatory variables that are strongly correlated to each other.</p>
+
+        <p>If we are a baseball fan, one of the interesting things we can do is to divide the variables into different categories based on their action. All batting related variables can be bundled under “batting”, running bases variables under “baserun”, pitching related variables under “pitching” and field related variables such as Errors under “fielding”. Having said that, this is not a required step for linear regression but rather applicable and interesting to apply in this case.</p>
+
+        <p>Let’s look at the distribution of each variable.</p>
+
+        <img class="img-fluid rounded" src="../img/multi5.jpg" alt="multi5 image">
+
+        <img class="img-fluid rounded" src="../img/multi6.jpg" alt="multi5 image">
+
+        <p>We can see that variables TARGET_WINS, TEAM_BATTING_H, TEAM_BATTING_2B, TEAM_BATTING_BB and TEAM_BASERUN_CS are normally distributed. TEAM_BATTING_HR on the other hand is bimodal.</p>
+
+        <!--<blockquote class="blockquote">
+          <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+          <footer class="blockquote-footer">Someone famous in
+            <cite title="Source Title">Source Title</cite>
+          </footer>
+        </blockquote> -->
+
+        <img class="img-fluid rounded" src="../img/multi7.jpg" alt="code5 image">
+
+        <p>TEAM_BASERUN_SB is right skewed and TEAM_BATTING_SO is bimodal.</p>
+
+        <img class="img-fluid rounded" src="../img/multi8.jpg" alt="code5 image">
+
+        <p>TEAM_BATTING_HBP seems to be normally distributed, however we shouldn't forget that we have a lot of missing values in this variable.</p>
+
+        <img class="img-fluid rounded" src="../img/multi9.jpg" alt="code7 image">
+
+        <p>We can see the skewness of each variable from the distribution, however let’s look see variable skewness in terms of a number.</p>
+
+        <img class="img-fluid rounded" src="../img/multi10.jpg" alt="code8 image">
+
+        <p>Based on that, we can see that the most skewed variable is TEAM_PITCHING_SO. We will correct the skewed variables in our data preparation section.</p>
+
+        <p>When we are creating a linear regression model, we are looking for the fitting line with the least sum of squares, that has the small residuals with minimized squared residuals. Without getting into the computational math aspect, residuals are the difference between the predicted value and the actual value.</p>
+
+        <p>We can also look at each variable individually in terms of distribution and see the outliers.</p>
+
+        <img class="img-fluid rounded" src="../img/multi11.jpg" alt="code9 image">
+
+        <img class="img-fluid rounded" src="../img/multi12.jpg" alt="code9 image">
+
+        <p>As seen in the box plots “TEAM_BASERUN_SB”, “TEAM_BASERUN_CS”, “TEAM_PITCHING_H”, “TEAM_PITCHING_BB”, “TEAM_PITCHING_SO”, and “TEAM_FIELDING_E” all have a high number of outliers. We will remove these outliers in our data cleaning and preparation section.</p>
+
+        <p>The idea of creating a linear regression line and model is easy. We create a linear model, that gives us the intercept and slope for each variable. We further look interpret the model summary to evaluate and improve the model. In my opinion, the challenging part is to make sure the data set collected meets the conditions for least square lines (linear regression). These conditions are linearity, nearly normal residuals and constant variability. Even though we will look at these conditions for our analysis, we will not be going into details on these individually.</p>
+
+        <p>Let’s look at the residuals to ensure the linearity, normal distribution and constant variability conditions are met.</p>
+
+        <img class="img-fluid rounded" src="../img/multi13.jpg" alt="code10 image">
+
+        <p>When we look at the residual plots, we see that even though the residuals are not perfectly normal distributed, they are nearly normally distributed. There is linearity between the explanatory and the response variable.</p>
+
+        <p>Let’s look at this in detail by creating a simple model.</p>
+
+        <img class="img-fluid rounded" src="../img/multi14.jpg" alt="code10 image">
+
+        <p>The simple model we created, can explain 96% of the variability. For each additional base hits by batters, the team wins the Team Wins expected to increase by 0.0549.</p>
+
+        <p>Since R is used more in statistical analysis within linear modeling compare to python, by using R, we could have plot the summary, plot(model) and get all the residual plots we need in order to check the conditions, however in python we need to create our own function and objects to create the same residual plots.</p>
+
+        <p>Let’s see if we can do that.</p>
+
+        <img class="img-fluid rounded" src="../img/multi15.jpg" alt="code10 image">
+        <img class="img-fluid rounded" src="../img/multi16.jpg" alt="code10 image">
+        <img class="img-fluid rounded" src="../img/multi17.jpg" alt="code10 image">
+        <img class="img-fluid rounded" src="../img/multi18.jpg" alt="code10 image">
+        <img class="img-fluid rounded" src="../img/multi19.jpg" alt="code10 image">
+        <img class="img-fluid rounded" src="../img/multi20.jpg" alt="code10 image">
+        <img class="img-fluid rounded" src="../img/multi21.jpg" alt="code10 image">
+        <img class="img-fluid rounded" src="../img/multi22.jpg" alt="code10 image">
+
+        <p>Based on explanatory variable TEAM_BATTING_H and response variable TARGET_WINS, the residuals are nearly normal distributed, there is linearity between them and the variability around the least square lines are roughly constant. (a.k.a. homoscedasticity).</p>
+
+        <p>When we look at the distribution of each variable, there are points that lie away from the cloud of points. These are outliers. Outliers that lie horizontally away from the center are high leverage points which influence the slope of the regression. These are influential points.</p>
+
+        <p>We can further start cleaning and preparing our dataset.</p>
+
+        <h2>Data Cleaning and Preperation</h2>
+
+        <p>Let’s start with handling the missing values and further we can remove the outliers within the dataset for model development.</p>
+
+        <img class="img-fluid rounded" src="../img/multi23.jpg" alt="code10 image">
+        <img class="img-fluid rounded" src="../img/multi24.jpg" alt="code10 image">
+        <img class="img-fluid rounded" src="../img/multi25.jpg" alt="code10 image">
+        <img class="img-fluid rounded" src="../img/multi26.jpg" alt="code10 image">
+
+        <h2>Model Development and Evaluation</h2>
+
+        <p>We looked at the distribution, skewness and missing values of each variable. We assume that the observations are random. We also checked the linear regression conditions, made sure the error terms (e) or a.k.a residuals are normally distributed, there is linear independence between variables, the variance is constant (there is no heteroskedastic) and residuals are independent. We handled the missing values and skewness of the training data.</p>
+
+        <p>Before we start building our models, I would like to briefly mention feature selection process. During our analysis and the nature of the dataset, we might deal with many different explanatory variables. We may not want to use all of these variables and want to select certain features of the observation to get the most optimal model. In this case we can use forward step and backward feature selection approaches. Essentially, we are looking at features that will give us the optimal p value for the target variable.</p>
+
+        <p>In R, we can simply use stepwise function and this will give us the most efficient features to use. In python, we can define a function that can give us the features to use both forward and backward step. Here is an example using the current dataset.</p>
+
+        <img class="img-fluid rounded" src="../img/multi27.jpg" alt="code10 image">
+
+        <p>Let’s start creating a model using all variables.</p>
+
+        <img class="img-fluid rounded" src="../img/multi28.jpg" alt="code10 image">
+        <img class="img-fluid rounded" src="../img/multi29.jpg" alt="code10 image">
+
+        <p>In this model, the R-squared is lower (0.969). We can also see that the Standard Error increased.</p>
+
+        <img class="img-fluid rounded" src="../img/multi30.jpg" alt="code10 image">
+
+        <p>In this model we have 5 significant variables that has really low p-values. R-squared is smaller but almost as high as the first model. We also see that standard errors are much more reasonable compare to the first model.</p>
+
+        <img class="img-fluid rounded" src="../img/multi31.jpg" alt="code10 image">
+
+        <p>This model is similar to Model 3 in terms of standard errors and F-statistics, however it has smaller r-squared.</p>
+
+        <img class="img-fluid rounded" src="../img/multi32.jpg" alt="code10 image">
+
+        <p>Even though we only used the 5 significant variables from model-3, the r-squared is lower than model-3.</p>
+
+        <p>When we are evaluating models, we have to consider bias and variance for the linear model. If we fit the linear line with the data perfectly (or close to perfect), with a complex linear model, we are increasing the variance (over fitting). If we do the opposite, where the linear line barely fits with the data, with a very simple model, we are increasing the bias(under fitting). We want to create and select a model where the prediction can be generalized and works with the test data set.</p>
+
+        <p>If we have high variance in our model, we can apply certain variance reduction strategies. For example in our Model 1, the R-squared is really high which can indicate close to perfect fit and high variance.</p>
+
+        <p>For variance reduction, we can use cross validation to split our dataset into test and train data sets. In our case, we have been provided two separate data sets (train and test) and this won’t be applicable. However, there will be use cases where we would be required to split into train and test datasets. What Cross Validation does is, instead of splitting the dataset proportionally what we define (80% and 20% for example), it creates equally sized subsets of data and iterate train and test over all the subsets, keeping one subset as test data. We can use 10-fold, 5 fold, 3 fold or Leave one Out Cross Validation.</p>
+
+        <p>Another variance reduction strategy is Shrinkage (a.k.a) penalization. There are 3 mainly known regulation approaches. Ridge Regression, Lasso and Elastic Net Regression. We won’t be going into details of these methods but the idea is to apply a penalty to the model to trade off between bias and variance.</p>
+
+        <p>Based on the five models we created and our evaluation, Model 3 seems to be the most effective model. We can certainly apply regularization (Elastic Net or Ridge Regression) and reduce variance, however we will keep it as is for now.</p>
+
+        <h2>Model Prediction</h2>
+
+        <p>Finally we can apply our linear regression model to the test data set to see our predictions.</p>
+
+        <img class="img-fluid rounded" src="../img/multi33.jpg" alt="code10 image">
+
+        <h2>Conclusion</h2>
+
+        <p>To summarize the steps on creating linear regression model,</p>
+        <ol>
+          <li>1- Look at Descriptive Statistics</li>
+          <li>2- Look at Missing Values.</li>
+          <li>3- Look at Distribution of Variables.</li>
+          <li>4- Look at Correlation of Variables.</li>
+          <li>5- Look at Skewness of the Variables.</li>
+          <li>6- Check the Linear Regression Assumptions (Look at Residuals).</li>
+          <li>7- Look at the Outliers.</li>
+          <li>8- Remove Outliers and Make Necessary Data Transformation. (We didn't need to do any transformation in order to get to the normal residual distribution, however there are use cases where we might need to apply transformation to the explanatory and response variable(such as log transformation). If there are categorical variables, we need to convert them to numerical variables as dummy variables.</li>
+          <li>9- Create multiple models (We can use backward elimination for feature selection, or try different features in each model. One important aspect on feature selection is we need to start with the biggest number of features so the features that are used in each model are nested with each other.)</li>
+          <li>10- Look at Bias and Variance(Overfitting & Underfitting)</li>
+          <li>11- Apply Variance Reduction Strategies if needed. (Ridge, Elastic-Net, Lasso, CV)</li>
+          <li>12- Evaluate, select the model and apply prediction.</li>
+        </ol>
+
+        <p>The Model 3 is the best model when we compare r-squared and standard error of the models. This model will predict TARGET WINS of a baseball team better than the other models. We can definitely apply regularization(a.k.a. shrinkage, penalization) to make it more stable and less prone to overfitting and high variance. </p>
+
+        <p>The chosen model is OLS Model-3, due to the improved F-Statistic, positive variable coefficients and low Standard Errors.</p>
+
+        <p>For Models 3 and 4, the variables were chosen just to test how the offensive categories only would affect the model and how only defensive variables would affect the model. Based on the Coefficients for each model, the third model took the highest coefficient from each category model.</p>
+
+        <p>For offense, the two highest were HR and Triples. Which intuitively does make sense, because the HR and triple are two of the highest objectives a hitter can achieve when batting and thus the higher the totals in those categories the higher the runs scored which help a team win. And on the defensive side, the two highest coefficients were Hits and WALKS. This also makes sense because as a pitcher, what we would want to do is to limit the numbers of times a batter gets on a base whether by a hit or walk. Unless its an error, if a batter does not get a hit or a walk, then the outcome would be an out which would in essence limit the amount of runs scored by the opposing team.</p>
+
+        <hr>
+
+        <!-- Comments Form -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <textarea class="form-control" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Single Comment -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+          </div>
+        </div>
+
+        <!-- Comment with nested comments -->
+        <!--<div class="media mb-4">
+          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+          <div class="media-body">
+            <h5 class="mt-0">Commenter Name</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+            <div class="media mt-4">
+              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+              <div class="media-body">
+                <h5 class="mt-0">Commenter Name</h5>
+                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <!--<div class="col-md-4">
+
+        <!-- Search Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Search</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-secondary" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Categories Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Categories</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">Web Design</a>
+                  </li>
+                  <li>
+                    <a href="#">HTML</a>
+                  </li>
+                  <li>
+                    <a href="#">Freebies</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="#">JavaScript</a>
+                  </li>
+                  <li>
+                    <a href="#">CSS</a>
+                  </li>
+                  <li>
+                    <a href="#">Tutorials</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Widget -->
+        <!--<div class="card my-4">
+          <h5 class="card-header">Side Widget</h5>
+          <div class="card-body">
+            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+          </div>
+        </div>-->
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
